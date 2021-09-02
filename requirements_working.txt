@@ -1,0 +1,16 @@
+boto3==1.18.34
+botocore==1.21.34
+Jinja2==3.0.1
+jmespath==0.10.0
+json-cfg==0.4.2
+kwonly-args==1.0.10
+MarkupSafe==2.0.1
+netaddr==0.8.0
+parliament==1.4.0
+policyuniverse==1.4.0.20210819
+pyjq==2.5.2
+python-dateutil==2.8.2
+PyYAML==5.4.1
+s3transfer==0.5.0
+six==1.16.0
+urllib3==1.26.6
