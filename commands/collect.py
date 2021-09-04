@@ -218,7 +218,7 @@ def collect(arguments):
     else:
         default_region = 'us-east-1'
 
-    regions_filter = None
+    regions_filter = "us-east-2"
     if len(arguments.regions_filter) > 0:
         regions_filter = arguments.regions_filter.lower().split(",")
         # Force include of default region -- seems to be required
@@ -280,6 +280,8 @@ def collect(arguments):
     if regions_filter is not None:
         filtered_regions = [r for r in region_list["Regions"] if r["RegionName"] in regions_filter]
         region_list["Regions"] = filtered_regions
+    # print(json.dumps(filtered_regions))
+    # return
 
     with open("account-data/{}/describe-regions.json".format(account_dir), "w+") as f:
         f.write(json.dumps(region_list, indent=4, sort_keys=True))

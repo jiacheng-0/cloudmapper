@@ -358,7 +358,17 @@ def get_resource_nodes(region, outputfilter):
             outputfilter.get("collapse_by_tag", False),
             outputfilter.get("collapse_asgs", False),
         )
+        print(type(ec2_json))
+        # print(ec2_json.keys())
+        print(ec2_json["InstanceId"])
+        print(ec2_json["State"])
+
         nodes[node.arn] = node
+        # print('fff', node.arn, ec2_json["InstanceId"])
+    
+    # print(nodes)
+    # import sys
+    # sys.exit(0)
 
     # RDS nodes
     for rds_json in get_rds_instances(region):
@@ -444,7 +454,7 @@ def build_data_structure(account_data, config, outputfilter):
 
         # In each region, iterate through all the resource types
         nodes = get_resource_nodes(region, outputfilter)
-
+        print(nodes)
         # Filter out nodes based on tags
         if len(outputfilter.get("tags", [])) > 0:
             for node_id in list(nodes):
@@ -476,6 +486,7 @@ def build_data_structure(account_data, config, outputfilter):
         # Add the nodes to their respective subnets
         for node_arn in list(nodes):
             node = nodes[node_arn]
+            # print(node_arn, "node_arm")
             add_node_to_subnets(region, node, nodes)
 
         # From the root of the tree (the account), add in the children if there are leaves
